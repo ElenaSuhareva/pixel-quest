@@ -1,0 +1,253 @@
+:root {
+  --night: #080726;
+  --navy: #14113f;
+  --violet: #352066;
+
+  --cream: #fff1c9;
+  --cream-light: #fff8e3;
+
+  --gold: #f4a914;
+  --gold-light: #ffd95a;
+  --gold-dark: #8d5108;
+
+  --green: #32c70a;
+  --green-light: #68eb22;
+  --green-dark: #167605;
+
+  --diamond: #25d8ff;
+
+  --text-dark: #19142e;
+  --text-light: #fff8df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--night);
+  color: var(--text-dark);
+  font-family: "Roboto Mono", monospace;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.welcome-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    linear-gradient(rgba(8, 7, 38, 0.12), rgba(8, 7, 38, 0.12)),
+    url("/assets/backgrounds/welcome-world.png") center / cover no-repeat;
+}
+
+.welcome-panel {
+  width: clamp(700px, 48vw, 850px);
+  min-height: min(86vh, 760px);
+  height: auto;
+
+  padding: 5vh 6vw 4vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  background: url("/assets/ui/welcome-panel.png") center / 100% 100% no-repeat;
+
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.welcome-logo {
+  margin-bottom: 28px;
+
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--violet);
+}
+
+.welcome-logo-image {
+  display: block;
+  width: 42%;
+  max-width: 360px;
+  min-width: 250px;
+  height: auto;
+  margin: 0 0 clamp(24px, 4vh, 48px);
+}
+
+.welcome-panel h1 {
+  margin: 0 0 clamp(14px, 2vh, 24px);
+  font-size: clamp(38px, 3vw, 52px);
+  line-height: 1;
+  color: var(--violet);
+}
+
+.welcome-panel p {
+  margin: 0 0 clamp(14px, 2vh, 24px);
+  font-size: clamp(22px, 1.5vw, 28px);
+  color: var(--text-dark);
+}
+
+.welcome-input {
+  width: 82%;
+  height: 58px;
+  padding: 0 18px;
+  margin-bottom: 20px;
+
+  background: white;
+
+  border: 4px solid var(--violet);
+  outline: none;
+
+  font-size: 22px;
+  color: var(--text-dark);
+}
+
+.welcome-input:focus {
+  border-color: var(--gold);
+}
+
+.welcome-button {
+  width: 82%;
+  min-height: 64px;
+
+  border: 5px solid var(--gold-light);
+  outline: 4px solid var(--green-dark);
+
+  background: var(--green);
+
+  color: white;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 8px 0 var(--green-dark);
+}
+
+.welcome-button:hover {
+  background: var(--green-light);
+}
+
+.welcome-button:active {
+  transform: translateY(5px);
+  box-shadow: 0 3px 0 var(--green-dark);
+}
+
+.welcome-input-frame {
+  width: 82%;
+  height: clamp(66px, 8vh, 84px);
+  margin: 0 0 clamp(18px, 2.5vh, 30px);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  background: #fff8e3;
+  border: 5px solid var(--gold-light);
+  outline: 3px solid var(--green-dark);
+  box-shadow: 0 6px 0 rgba(22, 118, 5, 0.35);
+
+  transition:
+  transform 0.15s ease,
+  box-shadow 0.15s ease,
+  filter 0.15s ease;
+}
+
+.welcome-input-frame:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+.welcome-input-frame:focus-within {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 6px 0 rgba(22, 118, 5, 0.35),
+    0 0 0 4px rgba(255, 217, 90, 0.28);
+}
+
+.welcome-input-frame .welcome-input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 20px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: clamp(20px, 1.4vw, 26px);
+  color: var(--text-dark);
+}
+
+.welcome-button-image {
+  display: block;
+  width: 82%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
+}
+
+.welcome-button-image:hover {
+  transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.08);
+}
+
+.welcome-button-image:active {
+  transform: translateY(2px) scale(0.98);
+  filter: brightness(0.95);
+}
+
+.welcome-button-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  .welcome-screen {
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .welcome-panel {
+    width: 94vw;
+    min-height: auto;
+    padding: 32px 24px 32px;
+  }
+
+  .welcome-logo-image {
+    width: 180px;
+    margin-bottom: 18px;
+  }
+
+  .welcome-panel h1 {
+    font-size: 34px;
+  }
+
+  .welcome-panel p {
+    font-size: 22px;
+  }
+
+  .welcome-input-frame {
+    width: 88%;
+  }
+
+  .welcome-button-image {
+    width: 88%;
+  }
+}
