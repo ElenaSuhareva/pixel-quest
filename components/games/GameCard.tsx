@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { assetPath } from "@/lib/asset-path";
 
 export type GameCardData = {
   slug: string;
@@ -16,18 +17,21 @@ type GameCardProps = {
 
 export default function GameCard({ game }: GameCardProps) {
   function playClickSound() {
-    const audio = new Audio("/assets/sounds/button-click.wav");
+    const audio = new Audio(assetPath("/assets/sounds/button-click.wav"));
     audio.volume = 0.35;
     audio.play().catch(() => undefined);
   }
 
   return (
     <article className="game-card">
-      <div className="game-card__surface">
+      <div
+        className="game-card__surface"
+        style={{ backgroundImage: `url("${assetPath("/assets/home/card-frame.png")}")` }}
+      >
         <div className="game-card__preview-wrap">
           <img
             className="game-card__preview"
-            src={game.image}
+            src={assetPath(game.image)}
             alt=""
             style={{ objectPosition: game.imagePosition ?? "center" }}
           />
@@ -44,7 +48,7 @@ export default function GameCard({ game }: GameCardProps) {
           onClick={playClickSound}
           aria-label={`Играть: ${game.title}`}
         >
-          <img src="/assets/home/play-button.png" alt="Играть" />
+          <img src={assetPath("/assets/home/play-button.png")} alt="Играть" />
         </Link>
       </div>
     </article>

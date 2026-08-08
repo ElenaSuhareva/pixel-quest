@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/asset-path";
+
 import { useEffect, useState } from "react";
 import { createPlayer, getPlayer } from "@/lib/player-storage";
 import HomeScreen from "@/components/home/HomeScreen";
@@ -19,13 +21,13 @@ export default function WelcomeScreen() {
     if (savedPlayer) {
       setPlayer({
         name: savedPlayer.name,
-        diamonds: savedPlayer.diamonds ?? 0
+        diamonds: savedPlayer.diamonds ?? 0,
       });
     }
   }, []);
 
   function handleStart() {
-    const clickSound = new Audio("/assets/sounds/button-click.wav");
+    const clickSound = new Audio(assetPath("/assets/sounds/button-click.wav"));
     clickSound.volume = 0.45;
     clickSound.play();
 
@@ -39,25 +41,30 @@ export default function WelcomeScreen() {
 
     setPlayer({
       name: newPlayer.name,
-      diamonds: newPlayer.diamonds ?? 0
+      diamonds: newPlayer.diamonds ?? 0,
     });
   }
 
   if (player) {
-    return (
-      <HomeScreen
-        name={player.name}
-        diamonds={player.diamonds}
-      />
-    );
+    return <HomeScreen name={player.name} diamonds={player.diamonds} />;
   }
 
   return (
-    <main className="welcome-screen">
-      <section className="welcome-panel">
+    <main
+      className="welcome-screen"
+      style={{
+        backgroundImage: `linear-gradient(rgba(8, 7, 38, 0.12), rgba(8, 7, 38, 0.12)), url("${assetPath("/assets/backgrounds/welcome-world.png")}")`,
+      }}
+    >
+      <section
+        className="welcome-panel"
+        style={{
+          backgroundImage: `url("${assetPath("/assets/ui/welcome-panel.png")}")`,
+        }}
+      >
         <img
           className="welcome-logo-image"
-          src="/assets/brand/welcome-logo.png"
+          src={assetPath("/assets/brand/welcome-logo.png")}
           alt="Pixel Quest"
         />
 
@@ -92,7 +99,7 @@ export default function WelcomeScreen() {
           aria-label="Начать приключения"
         >
           <img
-            src="/assets/ui/welcome-button.png"
+            src={assetPath("/assets/ui/welcome-button.png")}
             alt="Начать приключения"
           />
         </button>

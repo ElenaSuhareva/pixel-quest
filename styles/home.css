@@ -20,9 +20,9 @@
   overflow-x: hidden;
   color: #18122f;
   font-family: "Trebuchet MS", Arial, sans-serif;
-  background:
-    linear-gradient(180deg, rgba(6, 22, 74, 0.04), rgba(5, 14, 50, 0.12)),
-    url("/assets/home/home-bg.png") center top / cover no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /* ---------- slim translucent header ---------- */
@@ -215,7 +215,9 @@
   grid-template-rows: 54% auto 1fr auto;
   align-items: start;
 
-  background: url("/assets/home/card-frame.png") center / 100% 100% no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   filter: drop-shadow(0 8px 6px rgba(25, 16, 58, 0.28));
 
   transition:
@@ -322,9 +324,9 @@
 
   color: #18122f;
   font-family: "Trebuchet MS", Arial, sans-serif;
-  background:
-    linear-gradient(rgba(5, 13, 48, 0.18), rgba(5, 13, 48, 0.24)),
-    url("/assets/home/home-bg.png") center / cover no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .game-details-card {

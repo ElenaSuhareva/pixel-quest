@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/asset-path";
+
 import Header from "@/components/layout/Header";
 import GameCard from "@/components/games/GameCard";
 import { games } from "@/data/games";
@@ -11,7 +13,12 @@ type HomeScreenProps = {
 
 export default function HomeScreen({ name, diamonds }: HomeScreenProps) {
   return (
-    <main className="home-screen">
+    <main
+      className="home-screen"
+      style={{
+        backgroundImage: `linear-gradient(180deg, rgba(6, 22, 74, 0.04), rgba(5, 14, 50, 0.12)), url("${assetPath("/assets/home/home-bg.png")}")`,
+      }}
+    >
       <Header name={name} diamonds={diamonds} />
 
       <div className="home-content">
@@ -21,7 +28,7 @@ export default function HomeScreen({ name, diamonds }: HomeScreenProps) {
           </h1>
           <img
             className="home-welcome__banner"
-            src="/assets/home/welcome-banner.png"
+            src={assetPath("/assets/home/welcome-banner.png")}
             alt="Добро пожаловать, юный герой!"
           />
           <div className="home-welcome__subtitle">
