@@ -1,0 +1,121 @@
+/* Pixel Quest cursor: ONE arrow only.
+   Hover state uses the same PNG, only larger and brighter. */
+
+.pixel-cursor,
+.pixel-cursor__trail {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) {
+  html.pixel-cursor-enabled,
+  html.pixel-cursor-enabled * {
+    cursor: none !important;
+  }
+
+  .pixel-cursor {
+    position: fixed;
+    left: -100px;
+    top: -100px;
+    z-index: 2147483647;
+    display: block;
+    width: 42px;
+    height: 54px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-4px, -4px) scale(1);
+    transform-origin: 8px 8px;
+    transition:
+      opacity 90ms linear,
+      transform 120ms ease,
+      filter 120ms ease;
+    will-change: left, top, transform;
+  }
+
+  .pixel-cursor--visible {
+    opacity: 1;
+  }
+
+  .pixel-cursor img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left top;
+    image-rendering: pixelated;
+    user-select: none;
+  }
+
+  .pixel-cursor--interactive {
+    transform: translate(-4px, -4px) scale(1.2);
+    filter:
+      drop-shadow(0 0 3px rgba(255, 231, 72, 1))
+      drop-shadow(0 0 8px rgba(255, 190, 20, 0.95))
+      drop-shadow(0 0 14px rgba(255, 223, 64, 0.7));
+  }
+
+  .pixel-cursor__trail {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .pixel-cursor__spark {
+    position: fixed;
+    left: -100px;
+    top: -100px;
+    width: 7px;
+    height: 7px;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    background: #75de35;
+    box-shadow:
+      0 0 0 2px rgba(24, 86, 22, 0.8),
+      0 0 6px rgba(106, 226, 51, 0.9);
+    image-rendering: pixelated;
+  }
+
+  .pixel-cursor__spark--1 {
+    width: 6px;
+    height: 6px;
+    background: #ffd736;
+    box-shadow:
+      0 0 0 2px rgba(129, 85, 3, 0.78),
+      0 0 6px rgba(255, 211, 41, 0.92);
+  }
+
+  .pixel-cursor__spark--2 {
+    width: 5px;
+    height: 5px;
+    background: #b8f45b;
+  }
+
+  .pixel-cursor__spark--active {
+    animation: pixel-cursor-spark 430ms steps(4, end) forwards;
+  }
+
+  @keyframes pixel-cursor-spark {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    45% {
+      opacity: 0.9;
+      transform: translate(-50%, -50%) translate(-3px, 5px) scale(0.86);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) translate(-7px, 12px) scale(0.28);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-cursor__trail {
+    display: none !important;
+  }
+}
