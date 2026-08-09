@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { ReactNode } from "react";
@@ -35,7 +36,8 @@ export default function BraveKnightIntro() {
       <section className="brave-intro__card">
         <div className="brave-intro__copy">
           <button className="brave-intro__back" type="button" onClick={goHome}>
-            ← К списку игр
+            <img src={assetPath("/assets/common-ui/ui-home.png")} alt="" />
+            <span>На главную</span>
           </button>
 
           <h1>Храбрый рыцарь</h1>

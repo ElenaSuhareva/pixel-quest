@@ -1,3 +1,4 @@
+
 .brave-intro {
   min-height: 100vh;
   display: grid;
@@ -28,19 +29,31 @@
 }
 
 .brave-intro__back {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   margin: 0 0 28px;
   padding: 0;
   border: 0;
   background: transparent;
-  color: #d8f5ff;
+  color: #f7fbff;
   font: inherit;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 800;
   cursor: pointer;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.brave-intro__back img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 
 .brave-intro__back:hover {
   color: #fff1a5;
+  transform: translateY(-1px);
+  filter: brightness(1.06);
 }
 
 .brave-intro h1 {
@@ -216,6 +229,15 @@
 
   .brave-intro__card {
     padding: 20px;
+  }
+
+  .brave-intro__back {
+    font-size: 24px;
+  }
+
+  .brave-intro__back img {
+    width: 52px;
+    height: 52px;
   }
 
   .brave-intro__lead {

@@ -95,7 +95,7 @@
 
 .cave-intro__play {
   display: inline-block;
-  width: 290px;
+  width: 350px;
 }
 
 .cave-intro__play img {
@@ -205,7 +205,7 @@
   }
 
   .cave-intro__play {
-    width: 240px;
+    width: 285px;
   }
 
   .cave-intro__rules {
