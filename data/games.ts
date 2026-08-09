@@ -17,8 +17,8 @@ export const games: GameCardData[] = [
   },
   {
     slug: "cave-adventure",
-    title: "Пещерные приключения",
-    description: "Исследуй пещеры и находи сокровища!",
+    title: "Победи монстра",
+    description: "Сразись в пещерные крестики-нолики!",
     image: "/assets/home/game-cave.jpg",
     imagePosition: "center",
   },

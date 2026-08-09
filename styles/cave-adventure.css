@@ -1,0 +1,720 @@
+.cave-intro {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 4vw, 54px);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.cave-intro__card {
+  width: min(1240px, 96vw);
+  display: grid;
+  grid-template-columns: minmax(340px, 0.95fr) minmax(520px, 1.05fr);
+  gap: 42px;
+  align-items: center;
+  padding: 34px 34px 28px;
+  border: 4px solid #c89c2c;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(8, 20, 52, 0.96), rgba(6, 53, 77, 0.92));
+  box-shadow: inset 0 0 0 3px rgba(98, 168, 255, 0.2), 0 22px 60px rgba(0, 0, 0, 0.45);
+}
+
+.cave-intro__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 28px;
+}
+
+.cave-intro__back img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.cave-intro h1 {
+  margin: 0;
+  color: #fff1bd;
+  font-size: clamp(44px, 5vw, 74px);
+  line-height: 1.03;
+  text-shadow: 3px 3px 0 #172c57;
+}
+
+.cave-intro__lead {
+  max-width: 470px;
+  font-size: 22px;
+  line-height: 1.42;
+  margin: 18px 0 0;
+}
+
+.cave-intro__topic {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 430px);
+  margin: 28px 0 26px;
+  padding: 16px 18px;
+  border: 2px solid #5db9f9;
+  border-radius: 10px;
+  background: rgba(7, 38, 78, 0.68);
+}
+
+.cave-intro__topic span {
+  color: #72dbff;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cave-intro__topic strong {
+  color: #ffe66d;
+  font-size: 20px;
+}
+
+.cave-intro__play {
+  display: inline-block;
+  width: 290px;
+}
+
+.cave-intro__play img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.cave-intro__play:hover img {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.cave-intro__rules {
+  position: relative;
+  min-height: 430px;
+  padding: 26px 30px 26px 218px;
+  border: 3px solid #c99b2e;
+  border-radius: 16px;
+  background: rgba(4, 19, 48, 0.9);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
+}
+
+.cave-intro__rules h2 {
+  margin: 2px 0 24px;
+  text-align: center;
+  color: #ffd94f;
+  font-size: 46px;
+  text-transform: uppercase;
+}
+
+.cave-intro__hero {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  width: 176px;
+  max-height: 320px;
+  object-fit: contain;
+}
+
+.cave-intro__rulesList {
+  display: grid;
+  gap: 18px;
+}
+
+.cave-intro__ruleItem {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.cave-intro__ruleNumber {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #4b50bf;
+  color: #fff6be;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.cave-intro__ruleItem p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.cave-game {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  user-select: none;
+  color: #fff;
+}
+
+.cave-game::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(5, 10, 27, 0.03), rgba(5, 10, 27, 0.18));
+  pointer-events: none;
+}
+
+.cave-game__title {
+  position: absolute;
+  z-index: 10;
+  top: 12px;
+  left: 50%;
+  width: min(560px, 45vw);
+  transform: translateX(-50%);
+}
+
+.cave-game__title img,
+.cave-game__playerPanel img,
+.cave-game__monsterPanel img,
+.cave-game__boardImage,
+.cave-game__hero,
+.cave-game__monster,
+.cave-game__monsterRing,
+.cave-game__status img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cave-game__playerPanel {
+  position: absolute;
+  z-index: 10;
+  top: 24px;
+  left: 18px;
+  width: min(430px, 31vw);
+}
+
+.cave-game__monsterPanel {
+  position: absolute;
+  z-index: 10;
+  top: 24px;
+  right: 18px;
+  width: min(430px, 31vw);
+}
+
+.cave-game__diamondBox {
+  position: absolute;
+  z-index: 12;
+  top: 112px;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border: 3px solid rgba(101, 160, 255, 0.35);
+  border-radius: 14px;
+  background: rgba(11, 22, 58, 0.88);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.26);
+  transform: translateX(200px);
+}
+
+.cave-game__diamondBox img {
+  width: 30px;
+  height: 30px;
+}
+
+.cave-game__diamondBox strong {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.cave-game__controls {
+  position: absolute;
+  z-index: 12;
+  top: 158px;
+  right: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+.cave-game__controls button {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.cave-game__controls button:hover {
+  transform: scale(1.06);
+  filter: brightness(1.08);
+}
+
+.cave-game__controls img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cave-game__hintBox {
+  position: absolute;
+  z-index: 10;
+  top: 164px;
+  left: 26px;
+  width: min(280px, 22vw);
+  padding: 22px 20px;
+  border: 4px solid rgba(108, 122, 189, 0.35);
+  border-radius: 14px;
+  background: rgba(8, 18, 48, 0.88);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.cave-game__hintBox p {
+  margin: 0;
+  font-size: clamp(16px, 1.45vw, 20px);
+  line-height: 1.42;
+}
+
+.cave-game__hintBox strong {
+  color: #ffd94f;
+}
+
+.cave-game__boardWrap {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  top: 51%;
+  width: min(720px, 54vw);
+  transform: translate(-50%, -50%);
+}
+
+.cave-game__boardGrid {
+  position: absolute;
+  inset: 12.6% 12.8% 12.4% 12.7%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.cave-cell {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: rgba(120, 170, 255, 0.02);
+  cursor: pointer;
+  transition: background 0.14s ease, transform 0.12s ease;
+}
+
+.cave-cell:hover:not(:disabled) {
+  background: rgba(113, 168, 255, 0.12);
+}
+
+.cave-cell:disabled,
+.cave-cell.is-filled {
+  cursor: default;
+}
+
+.cave-cell img {
+  width: 62%;
+  max-width: 110px;
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.22));
+}
+
+.cave-game__hero {
+  position: absolute;
+  z-index: 9;
+  left: 7%;
+  bottom: 8.6%;
+  width: min(220px, 16vw);
+}
+
+.cave-game__monster {
+  position: absolute;
+  z-index: 9;
+  right: 9.4%;
+  bottom: 8.7%;
+  width: min(240px, 17vw);
+}
+
+.cave-game__monsterRing {
+  position: absolute;
+  z-index: 8;
+  right: 14.8%;
+  bottom: 14.5%;
+  width: min(110px, 8vw);
+}
+
+.cave-game__status {
+  position: absolute;
+  z-index: 11;
+  left: 50%;
+  bottom: 20px;
+  width: min(760px, 54vw);
+  transform: translateX(-50%);
+}
+
+.cave-game__status p {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0 82px;
+  color: #ffffff;
+  font-size: clamp(24px, 2vw, 34px);
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.32);
+}
+
+.cave-modal-backdrop {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(4, 8, 24, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.cave-question,
+.cave-feedback__window {
+  position: relative;
+  width: min(700px, 92vw);
+  aspect-ratio: 1318 / 1119;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.cave-question__close {
+  position: absolute;
+  top: 6%;
+  right: 9.4%;
+  width: 9%;
+  aspect-ratio: 1;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cave-question__content {
+  position: absolute;
+  inset: 22% 12% 16%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #3a2149;
+}
+
+.cave-question__content h2 {
+  margin: 0 0 34px;
+  max-width: 82%;
+  font-size: clamp(26px, 2.3vw, 42px);
+  line-height: 1.3;
+}
+
+.cave-question__answers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.cave-question__answer {
+  min-height: 68px;
+  padding: 12px 10px;
+  border: 3px solid #c6a67d;
+  border-radius: 14px;
+  background: linear-gradient(#fef3d9, #f2ddaf);
+  color: #573822;
+  font-size: clamp(18px, 1.75vw, 30px);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(108, 76, 39, 0.22);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.cave-question__answer:hover,
+.cave-question__answer.is-selected {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 0 0 3px rgba(255, 220, 104, 0.7), 0 4px 0 rgba(108, 76, 39, 0.22);
+}
+
+.cave-question__hint {
+  margin: 26px 0 0;
+  width: 100%;
+  color: #6a5b44;
+  font-size: clamp(16px, 1.35vw, 22px);
+  line-height: 1.35;
+  text-align: left;
+}
+
+.cave-feedback {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.cave-feedback__action {
+  position: absolute;
+  left: 50%;
+  bottom: 10.6%;
+  width: 48%;
+  height: 16%;
+  border: 0;
+  background: transparent;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.cave-feedback__note {
+  width: min(650px, 92vw);
+  padding: 16px 20px;
+  border-radius: 14px;
+  font-size: clamp(17px, 1.45vw, 22px);
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.cave-feedback__note strong {
+  font-size: 1.04em;
+}
+
+.cave-feedback__note--correct {
+  color: #244b17;
+  background: #f5f1cf;
+  border: 3px solid #90bf57;
+}
+
+.cave-feedback__note--wrong {
+  color: #612510;
+  background: #fff0d6;
+  border: 3px solid #d58b67;
+}
+
+.cave-overlayPanel {
+  width: min(640px, 92vw);
+  padding: 34px 30px 28px;
+  border: 4px solid #b08c34;
+  border-radius: 18px;
+  background: linear-gradient(#fff3d0, #f4e0ac);
+  color: #2f2414;
+  text-align: center;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
+}
+
+.cave-overlayPanel h2 {
+  margin: 0 0 16px;
+  font-size: clamp(34px, 3vw, 48px);
+  color: #472979;
+}
+
+.cave-overlayPanel p {
+  margin: 0 auto;
+  max-width: 520px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.cave-overlayPanel__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 26px 0;
+}
+
+.cave-overlayPanel__stats div {
+  padding: 16px 14px;
+  border: 2px solid rgba(121, 87, 36, 0.26);
+  border-radius: 14px;
+  background: rgba(255, 248, 227, 0.7);
+}
+
+.cave-overlayPanel__stats span {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7f6739;
+}
+
+.cave-overlayPanel__stats strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 30px;
+  color: #2d3e88;
+}
+
+.cave-overlayPanel__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.cave-overlayPanel__buttons button {
+  min-width: 180px;
+  padding: 14px 20px;
+  border: 3px solid #3259a3;
+  border-radius: 12px;
+  background: linear-gradient(#5fa5ff, #376fd7);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.cave-overlayPanel__buttons button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+@media (max-width: 1180px) {
+  .cave-game__title {
+    width: min(480px, 42vw);
+  }
+
+  .cave-game__diamondBox {
+    transform: translateX(170px);
+  }
+
+  .cave-game__hintBox {
+    top: 168px;
+    width: min(250px, 24vw);
+  }
+}
+
+@media (max-width: 960px) {
+  .cave-intro__card {
+    grid-template-columns: 1fr;
+  }
+
+  .cave-intro__rules {
+    padding-left: 190px;
+  }
+
+  .cave-game__title,
+  .cave-game__playerPanel,
+  .cave-game__monsterPanel,
+  .cave-game__diamondBox,
+  .cave-game__hintBox,
+  .cave-game__controls,
+  .cave-game__hero,
+  .cave-game__monster,
+  .cave-game__monsterRing,
+  .cave-game__status {
+    position: static;
+    transform: none;
+  }
+
+  .cave-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 14px 24px;
+  }
+
+  .cave-game__title {
+    width: min(520px, 90vw);
+    margin-top: 10px;
+  }
+
+  .cave-game__playerPanel,
+  .cave-game__monsterPanel {
+    width: min(420px, 90vw);
+  }
+
+  .cave-game__diamondBox {
+    order: 2;
+  }
+
+  .cave-game__controls {
+    order: 3;
+  }
+
+  .cave-game__hintBox {
+    order: 4;
+    width: min(460px, 92vw);
+  }
+
+  .cave-game__boardWrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(620px, 92vw);
+    transform: none;
+    order: 5;
+  }
+
+  .cave-game__hero,
+  .cave-game__monster,
+  .cave-game__monsterRing {
+    display: none;
+  }
+
+  .cave-game__status {
+    width: min(640px, 92vw);
+    order: 6;
+  }
+}
+
+@media (max-width: 700px) {
+  .cave-intro {
+    padding: 14px;
+  }
+
+  .cave-intro__card {
+    padding: 22px;
+  }
+
+  .cave-intro__play {
+    width: 240px;
+  }
+
+  .cave-intro__rules {
+    padding: 24px;
+  }
+
+  .cave-intro__hero {
+    display: none;
+  }
+
+  .cave-question__content {
+    inset: 20% 10% 14%;
+  }
+
+  .cave-question__answers {
+    grid-template-columns: 1fr;
+  }
+
+  .cave-overlayPanel__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .cave-game__controls button {
+    width: 54px;
+    height: 54px;
+  }
+
+  .cave-game__diamondBox strong {
+    font-size: 24px;
+  }
+}
