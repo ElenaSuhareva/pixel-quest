@@ -1,0 +1,532 @@
+.brave-game {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #071b1b;
+  color: #fff;
+  font-family: inherit;
+}
+
+.brave-game__viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 650px;
+  overflow: hidden;
+  background: #63c8e9;
+  user-select: none;
+}
+
+.brave-game__background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: repeat-x;
+  background-position-y: center;
+  image-rendering: pixelated;
+  filter: saturate(1.04);
+}
+
+.brave-game__background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,.01), rgba(5,55,28,.12));
+}
+
+.brave-game__world {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5550px;
+  height: 720px;
+  transform-origin: left top;
+  will-change: transform;
+}
+
+/* V3: игровая поверхность — тонкая лесная кромка, а не отдельная коричневая стена.
+   Основной пейзаж остаётся виден почти до самого низа экрана. */
+.brave-game__ground {
+  position: absolute;
+  left: 0;
+  top: 590px;
+  width: 5550px;
+  height: 54px;
+  border-top: 5px solid #c9ef4b;
+  background:
+    linear-gradient(to bottom, #6dbb28 0 9px, #3d8124 9px 18px, rgba(43,75,31,.9) 18px 31px, rgba(54,57,36,.68) 31px 54px),
+    repeating-linear-gradient(90deg, rgba(106,91,54,.45) 0 28px, rgba(45,67,38,.4) 28px 58px);
+  box-shadow:
+    inset 0 7px 0 rgba(39,113,29,.34),
+    0 -5px 13px rgba(32,105,31,.18);
+}
+
+.brave-game__ground::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 17px;
+  height: 32px;
+  opacity: .48;
+  background:
+    radial-gradient(ellipse at 25px 14px, #44652e 0 11px, transparent 12px),
+    radial-gradient(ellipse at 83px 22px, #2e4d2b 0 9px, transparent 10px),
+    radial-gradient(circle at 138px 13px, #886a43 0 5px, transparent 6px);
+  background-size: 170px 42px;
+  pointer-events: none;
+}
+
+
+.brave-game__hero,
+.brave-game__diamond,
+.brave-game__heart-pickup,
+.brave-game__enemy,
+.brave-game__spikes,
+.brave-game__castle,
+.brave-game__start-sign {
+  position: absolute;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.brave-game__hero {
+  width: 108px;
+  height: 112px;
+  z-index: 10;
+  transition: filter 80ms linear;
+  filter: drop-shadow(0 5px 3px rgba(0,0,0,.3));
+}
+
+.brave-game__hero--hurt {
+  filter: brightness(1.65) saturate(.45) drop-shadow(0 5px 3px rgba(0,0,0,.3));
+}
+
+.brave-game__diamond {
+  width: 72px;
+  height: 60px;
+  z-index: 7;
+  animation: brave-gem-float 1.25s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(80,213,255,.72));
+}
+
+.brave-game__heart-pickup {
+  width: 66px;
+  height: 56px;
+  z-index: 7;
+  animation: brave-heart-pulse 1s ease-in-out infinite alternate;
+  filter: drop-shadow(0 4px 3px rgba(76,0,0,.28));
+}
+
+.brave-game__start-sign {
+  left: 176px;
+  top: 458px;
+  width: 110px;
+  height: 134px;
+  z-index: 5;
+}
+
+.brave-game__spikes {
+  top: 542px;
+  height: 50px;
+  z-index: 6;
+}
+
+.brave-game__enemy {
+  z-index: 8;
+  filter: drop-shadow(0 4px 3px rgba(0,0,0,.28));
+}
+
+.brave-game__enemy--slime {
+  width: 120px;
+  height: 84px;
+}
+
+.brave-game__enemy--hedgehog {
+  width: 126px;
+  height: 88px;
+}
+
+.brave-game__castle {
+  left: 5200px;
+  top: 300px;
+  width: 360px;
+  height: 295px;
+  z-index: 4;
+}
+
+.brave-game__hud {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  right: 16px;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  pointer-events: none;
+}
+
+.brave-game__lives {
+  display: flex;
+  gap: 4px;
+}
+
+.brave-game__lives img {
+  width: 48px;
+  height: 43px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 3px 1px rgba(0,0,0,.4));
+}
+
+.brave-game__score {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 154px;
+  justify-content: center;
+  padding: 8px 17px 9px;
+  border: 3px solid #122d4e;
+  border-radius: 9px;
+  background: rgba(12,42,69,.9);
+  box-shadow: inset 0 0 0 2px #315e79, 0 4px 0 rgba(0,0,0,.2);
+  font-size: 27px;
+  line-height: 1;
+  text-shadow: 2px 2px 0 #06101b;
+}
+
+.brave-game__score img {
+  width: 45px;
+  height: 38px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.brave-game__controls {
+  justify-self: end;
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.brave-game__icon-button {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease;
+}
+
+.brave-game__icon-button:hover {
+  transform: translateY(-2px) scale(1.04);
+  filter: brightness(1.08);
+}
+
+.brave-game__icon-button:disabled {
+  opacity: .55;
+}
+
+.brave-game__icon-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+
+.brave-game__icon-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 60;
+  width: max-content;
+  max-width: 190px;
+  padding: 7px 10px;
+  border: 2px solid rgba(93, 207, 244, .78);
+  border-radius: 7px;
+  background: rgba(5, 31, 55, .95);
+  color: #fff8cd;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 1px 1px 0 #06182a;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity .12s ease, transform .12s ease;
+}
+
+.brave-game__icon-button:hover::after,
+.brave-game__icon-button:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brave-game__hint {
+  position: absolute;
+  z-index: 20;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 18px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  background: rgba(4,24,34,.6);
+  color: #f4f7df;
+  font-size: 14px;
+  backdrop-filter: blur(3px);
+}
+
+.brave-game__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(2,13,24,.68);
+  backdrop-filter: blur(3px);
+}
+
+.brave-game__pause-card,
+.brave-game__end-card {
+  width: min(520px, 92vw);
+  padding: 34px;
+  border: 4px solid #d6a629;
+  border-radius: 18px;
+  background: linear-gradient(#173e55, #102c43);
+  box-shadow: inset 0 0 0 3px #385f73, 0 18px 50px rgba(0,0,0,.42);
+  text-align: center;
+}
+
+.brave-game__pause-card h2,
+.brave-game__end-card h2 {
+  margin: 0 0 20px;
+  font-size: 34px;
+}
+
+.brave-game__pause-card button,
+.brave-game__end-card button {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px 18px;
+  border: 3px solid #d4a42c;
+  border-radius: 9px;
+  background: #2a7f44;
+  color: #fff8d5;
+  font: inherit;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px #55ad5d, 0 4px 0 #123522;
+}
+
+.brave-game__pause-card button:hover,
+.brave-game__end-card button:hover {
+  filter: brightness(1.12);
+}
+
+.brave-task {
+  position: relative;
+  width: min(610px, 92vw);
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 92px 80px;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #3a2411;
+  filter: drop-shadow(0 18px 32px rgba(0,0,0,.38));
+}
+
+.brave-task__eyebrow {
+  margin: 0 0 14px;
+  color: #745017;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.brave-task h2 {
+  margin: 0 0 12px;
+  font-size: clamp(38px, 6vw, 56px);
+  letter-spacing: 2px;
+}
+
+.brave-task__instruction {
+  margin: 0 0 22px;
+  font-size: 19px;
+}
+
+.brave-task__answers {
+  display: flex;
+  gap: 24px;
+}
+
+.brave-task__answers button,
+.brave-task__continue {
+  border: 0;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #fff7ce;
+  font-family: inherit;
+  font-weight: 800;
+  text-shadow: 2px 2px 0 #19310e;
+  cursor: pointer;
+  filter: drop-shadow(0 5px 4px rgba(0,0,0,.22));
+}
+
+.brave-task__answers button {
+  width: 132px;
+  height: 76px;
+  font-size: 38px;
+}
+
+.brave-task__answers button:hover,
+.brave-task__continue:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08) drop-shadow(0 7px 5px rgba(0,0,0,.25));
+}
+
+.brave-task__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.brave-task__status {
+  font-size: 30px;
+}
+
+.brave-task__status--correct { color: #297731; }
+.brave-task__status--wrong { color: #a52e28; }
+
+.brave-task__result p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.brave-task__result b {
+  display: block;
+  margin-top: 6px;
+  font-size: 28px;
+}
+
+.brave-task__continue {
+  width: 225px;
+  height: 72px;
+  margin-top: 12px;
+  font-size: 23px;
+}
+
+.brave-game__end-card--win {
+  background: linear-gradient(#194d47, #0d3135);
+}
+
+.brave-game__end-gem {
+  display: block;
+  color: #58dfff;
+  font-size: 62px;
+  line-height: .8;
+  text-shadow: 0 0 12px rgba(83,220,255,.7);
+}
+
+.brave-game__end-card p {
+  margin: 9px 0;
+  font-size: 19px;
+}
+
+.brave-game__best { color: #ffdc62; }
+.brave-game__end-actions { margin-top: 18px; }
+
+@keyframes brave-gem-float {
+  from { transform: translateY(-4px); }
+  to { transform: translateY(6px); }
+}
+
+@keyframes brave-heart-pulse {
+  from { transform: scale(.97); }
+  to { transform: scale(1.05); }
+}
+
+@media (max-width: 900px), (hover: none) {
+  .brave-game__hint::after {
+    content: "Игра рассчитана на управление с клавиатуры";
+  }
+  .brave-game__hint span { display: none; }
+}
+
+
+/* V7: выбранный ответ с клавиатуры */
+.brave-task__answer--selected {
+  transform: translateY(-3px) scale(1.06);
+  filter:
+    brightness(1.12)
+    drop-shadow(0 0 5px rgba(255, 224, 70, .95))
+    drop-shadow(0 7px 5px rgba(0, 0, 0, .25));
+}
+
+/* V7: переход на главную закрываем тем же фоном главного экрана,
+   поэтому между маршрутами не появляется белая/пустая вспышка. */
+.brave-nav-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 170ms ease;
+}
+
+.brave-nav-cover--visible {
+  opacity: 1;
+}
+
+/* V8: выбранные элементы хорошо видны и при мыши, и при клавиатуре. */
+.brave-task__answer--selected {
+  border-radius: 12px;
+  transform: translateY(-3px) scale(1.06);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 238, 112, .95),
+    0 0 0 2px rgba(255, 191, 43, .72),
+    0 0 15px rgba(255, 218, 62, .92);
+  filter:
+    brightness(1.14)
+    drop-shadow(0 7px 5px rgba(0, 0, 0, .25));
+}
+
+.brave-task__continue--selected {
+  border-radius: 12px;
+  transform: translateY(-3px) scale(1.035);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 242, 124, .92),
+    0 0 0 2px rgba(255, 190, 36, .68),
+    0 0 16px rgba(255, 220, 70, .9);
+  filter:
+    brightness(1.1)
+    drop-shadow(0 7px 5px rgba(0, 0, 0, .24));
+}
+
+.brave-menu-button--selected {
+  transform: translateY(-3px) scale(1.025);
+  border-color: #ffe56b !important;
+  box-shadow:
+    inset 0 0 0 2px #74c977,
+    0 0 0 2px rgba(255, 212, 65, .76),
+    0 0 15px rgba(255, 220, 73, .82),
+    0 5px 0 #123522 !important;
+  filter: brightness(1.08);
+}

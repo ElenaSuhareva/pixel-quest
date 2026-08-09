@@ -1,8 +1,7 @@
 "use client";
 
 import { assetPath } from "@/lib/asset-path";
-
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { createPlayer, getPlayer } from "@/lib/player-storage";
 import HomeScreen from "@/components/home/HomeScreen";
 
@@ -13,9 +12,9 @@ type PlayerView = {
 
 export default function WelcomeScreen() {
   const [name, setName] = useState("");
-  const [player, setPlayer] = useState<PlayerView | null>(null);
+  const [player, setPlayer] = useState<PlayerView | null | undefined>(undefined);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const savedPlayer = getPlayer();
 
     if (savedPlayer) {
@@ -23,26 +22,38 @@ export default function WelcomeScreen() {
         name: savedPlayer.name,
         diamonds: savedPlayer.diamonds ?? 0,
       });
+    } else {
+      setPlayer(null);
     }
   }, []);
 
   function handleStart() {
     const clickSound = new Audio(assetPath("/assets/sounds/button-click.wav"));
     clickSound.volume = 0.45;
-    clickSound.play();
+    clickSound.play().catch(() => undefined);
 
     const cleanName = name.trim();
-
-    if (!cleanName) {
-      return;
-    }
+    if (!cleanName) return;
 
     const newPlayer = createPlayer(cleanName);
-
     setPlayer({
       name: newPlayer.name,
       diamonds: newPlayer.diamonds ?? 0,
     });
+  }
+
+  // Пока localStorage ещё не прочитан, ничего не показываем.
+  // Поэтому при возврате из игры приветственный экран больше не мигает.
+  if (player === undefined) {
+    return (
+      <main
+        className="home-screen"
+        aria-busy="true"
+        style={{
+          backgroundImage: `linear-gradient(180deg, rgba(6, 22, 74, 0.04), rgba(5, 14, 50, 0.12)), url("${assetPath("/assets/home/home-bg.png")}")`,
+        }}
+      />
+    );
   }
 
   if (player) {
@@ -83,9 +94,7 @@ export default function WelcomeScreen() {
             value={name}
             onChange={(event) => setName(event.target.value)}
             onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                handleStart();
-              }
+              if (event.key === "Enter") handleStart();
             }}
             placeholder="Имя ученика"
             maxLength={20}

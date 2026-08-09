@@ -1,0 +1,184 @@
+.farm-intro {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 4vw, 54px);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.farm-intro__card {
+  width: min(1240px, 96vw);
+  display: grid;
+  grid-template-columns: minmax(340px, 0.95fr) minmax(520px, 1.05fr);
+  gap: 42px;
+  align-items: center;
+  padding: 34px 34px 28px;
+  border: 4px solid #c89c2c;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(7, 35, 48, 0.96), rgba(8, 61, 59, 0.94));
+  box-shadow: inset 0 0 0 3px rgba(91, 176, 161, 0.28), 0 22px 60px rgba(0, 0, 0, 0.42);
+}
+
+.farm-intro__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 28px;
+}
+
+.farm-intro__back img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.farm-intro h1 {
+  margin: 0;
+  color: #fff1bd;
+  font-size: clamp(44px, 5vw, 74px);
+  line-height: 1.03;
+  text-shadow: 3px 3px 0 #173424;
+}
+
+.farm-intro__lead {
+  max-width: 420px;
+  font-size: 22px;
+  line-height: 1.42;
+  margin: 18px 0 0;
+}
+
+.farm-intro__topic {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 430px);
+  margin: 28px 0 26px;
+  padding: 16px 18px;
+  border: 2px solid #67c7a3;
+  border-radius: 10px;
+  background: rgba(5, 61, 49, 0.68);
+}
+
+.farm-intro__topic span {
+  color: #5fd6ff;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.farm-intro__topic strong {
+  color: #ffe66d;
+  font-size: 20px;
+}
+
+.farm-intro__play {
+  display: inline-block;
+  width: 290px;
+}
+
+.farm-intro__play img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.farm-intro__play:hover img {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.farm-intro__rules {
+  position: relative;
+  min-height: 430px;
+  padding: 26px 30px 26px 218px;
+  border: 3px solid #c99b2e;
+  border-radius: 16px;
+  background: rgba(4, 34, 43, 0.88);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
+}
+
+.farm-intro__rules h2 {
+  margin: 2px 0 24px;
+  text-align: center;
+  color: #ffd94f;
+  font-size: 46px;
+  text-transform: uppercase;
+}
+
+.farm-intro__farmer {
+  position: absolute;
+  left: 22px;
+  bottom: 18px;
+  width: 182px;
+  max-height: 320px;
+  object-fit: contain;
+}
+
+.farm-intro__rulesList {
+  display: grid;
+  gap: 18px;
+}
+
+.farm-intro__ruleItem {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.farm-intro__ruleNumber {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #3ea44f;
+  color: #fff6be;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.farm-intro__ruleItem p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  .farm-intro__card {
+    grid-template-columns: 1fr;
+  }
+
+  .farm-intro__rules {
+    padding-left: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .farm-intro {
+    padding: 14px;
+  }
+
+  .farm-intro__card {
+    padding: 22px;
+  }
+
+  .farm-intro__play {
+    width: 240px;
+  }
+
+  .farm-intro__rules {
+    padding: 24px;
+  }
+
+  .farm-intro__farmer {
+    display: none;
+  }
+}
